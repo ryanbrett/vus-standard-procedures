@@ -16,7 +16,7 @@ const formatResult = (value: number | string) => {
 
 export default function ResultsDisplay({ results }: ResultsDisplayProps) {
     return (
-        <div className="mt-4 space-y-2">
+        <div className="space-y-3 pt-4 border-t mt-4">
             {Object.keys(results).map((key) => (
                 <div key={key} className="flex">
                     <label className="w-48 text-right mr-4 font-semibold">{results[key].label}</label>

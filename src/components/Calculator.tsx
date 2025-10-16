@@ -57,7 +57,6 @@ export default function Calculator() {
         setError('');
     }, [partType]);
 
-
     // --- CALCULATION LOGIC ---
     const handleCalculate = () => {
         const width = parseFloat(itemWidth);
@@ -202,7 +201,7 @@ export default function Calculator() {
             </div>
             
             <div className="mt-6">
-                <button onClick={handleCalculate} className="ml-[150px] bg-gray-300 text-white py-2 px-4 rounded hover:bg-blue-700">Calculate</button>
+                <button onClick={handleCalculate} className="ml-[150px] cursor-pointer text-white border bg-gray-700 py-2 px-4 rounded hover:bg-gray-600">Calculate</button>
                 {error && <div className="mt-2 ml-[200px] font-bold text-red-600">{error}</div>}
                 {results && <ResultsDisplay results={results} />}
             </div>
