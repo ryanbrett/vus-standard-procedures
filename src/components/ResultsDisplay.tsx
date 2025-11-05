@@ -19,7 +19,7 @@ export default function ResultsDisplay({ results }: ResultsDisplayProps) {
         <div className="space-y-3 pt-4 border-t mt-4">
             {Object.keys(results).map((key) => (
                 <div key={key} className="flex">
-                    <label className="w-48 text-right mr-4 font-semibold">{results[key].label}</label>
+                    <label className="w-48 text-left mr-4 font-semibold">{results[key].label}</label>
                     <p className="font-mono">{formatResult(results[key].value)}</p>
                 </div>
             ))}

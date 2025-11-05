@@ -218,13 +218,13 @@ export default function Calculator() {
             <div className="space-y-3">
                 {/* Main Selectors */}
                 <div className="flex items-center">
-                    <label htmlFor="partGroup" className="w-48 text-right mr-4 font-semibold">Part Group:</label>
+                    <label htmlFor="partGroup" className="w-48 text-left mr-4 font-semibold">Part Group:</label>
                     <select id="partGroup" value={partGroup} onChange={(e) => setPartGroup(e.target.value as PartGroup)} className="w-48 p-2 border rounded bg-gray-700 text-white">
                         <option value="signs">Signs</option><option value="decals">Decals</option><option value="lineMarkers">Markers</option><option value="other">Other</option>
                     </select>
                 </div>
                 <div className="flex items-center">
-                    <label htmlFor="partType" className="w-48 text-right mr-4 font-semibold">Part Type:</label>
+                    <label htmlFor="partType" className="w-48 text-left mr-4 font-semibold">Part Type:</label>
                     <select id="partType" value={partType} onChange={(e) => setPartType(e.target.value)} className="w-48 p-2 border rounded bg-gray-700 text-white">
                         {PART_GROUP_OPTIONS[partGroup].map(option => (<option key={option.value} value={option.value}>{option.text}</option>))}
                     </select>
@@ -233,7 +233,7 @@ export default function Calculator() {
                 {/* --- RESTORED CONDITIONAL OPTIONS --- */}
                 {partType === 'aluminum_sign' && (
                     <div className="flex items-center">
-                        <label htmlFor="alGauge_options" className="w-48 text-right mr-4 font-semibold">Aluminum Gauge:</label>
+                        <label htmlFor="alGauge_options" className="w-48 text-left mr-4 font-semibold">Aluminum Gauge:</label>
                         <select id="alGauge_options" value={alGauge} onChange={(e) => setAlGauge(e.target.value)} className="w-48 p-2 border rounded bg-gray-700 text-white">
                             <option value=".024">.024</option><option value=".040">.040</option><option value=".050">.050</option><option value=".063">.063</option><option value=".080">.080</option><option value=".090">.090</option><option value=".125">.125</option>
                         </select>
@@ -241,7 +241,7 @@ export default function Calculator() {
                 )}
                 {partType === 'acm_sign' && (
                      <div className="flex items-center">
-                        <label htmlFor="acm_options" className="w-48 text-right mr-4 font-semibold">ACM Sheet Size:</label>
+                        <label htmlFor="acm_options" className="w-48 text-left mr-4 font-semibold">ACM Sheet Size:</label>
                         <select id="acm_options" value={acmSheetSize} onChange={(e) => setAcmSheetSize(e.target.value)} className="w-48 p-2 border rounded bg-gray-700 text-white">
                             <option value="96">3mm x 96in x 48in</option><option value="120">3mm x 120in x 60in</option>
                         </select>
@@ -249,7 +249,7 @@ export default function Calculator() {
                 )}
                  {partType === 'hdpe_sign' && (
                      <div className="flex items-center">
-                        <label htmlFor="hdpe_options" className="w-48 text-right mr-4 font-semibold">HDPE Sheet Size:</label>
+                        <label htmlFor="hdpe_options" className="w-48 text-left mr-4 font-semibold">HDPE Sheet Size:</label>
                         <select id="hdpe_options" value={hdpeSheetSize} onChange={(e) => setHdpeSheetSize(e.target.value)} className="w-48 p-2 border rounded bg-gray-700 text-white">
                             <option value=".023">.023in x 45in x 24in</option><option value=".110_96">.110in x 48in x 96in</option><option value=".110_40">.110in x 48in x 40in</option><option value=".110_24">.110in x 48in x 24in</option>
                         </select>
@@ -257,13 +257,13 @@ export default function Calculator() {
                 )}
                 {partType === 'corrugated' && (
                      <div className="flex items-center">
-                        <label htmlFor="corr_options" className="w-48 text-right mr-4 font-semibold">Corrugated Sheet Size:</label>
+                        <label htmlFor="corr_options" className="w-48 text-left mr-4 font-semibold">Corrugated Sheet Size:</label>
                         <select id="corr_options" className="w-48 p-2 border rounded bg-gray-700 text-white" disabled><option value="4mm">4mm x 96in x 48in</option></select>
                     </div>
                 )}
                 {partType === 'digital_print' && (
                     <div className="flex items-center">
-                        <label htmlFor="digital_print_options" className="w-48 text-right mr-4 font-semibold">Roll Width:</label>
+                        <label htmlFor="digital_print_options" className="w-48 text-left mr-4 font-semibold">Roll Width:</label>
                         <select id="digital_print_options" value={digitalPrintRollWidth} onChange={(e) => setDigitalPrintRollWidth(e.target.value)} className="w-48 p-2 border rounded bg-gray-700 text-white">
                             <option value="54">54"</option><option value="48">48"</option><option value="36">36"</option><option value="30">30"</option><option value="24">24"</option><option value="22">22"</option><option value="18">18" (HIP)</option><option value="16">16"</option>
                         </select>
@@ -273,13 +273,13 @@ export default function Calculator() {
                 {partType === 'magnet' && (
                     <div className="space-y-3">
                          <div className="flex items-center">
-                            <label htmlFor="magnet_options" className="w-48 text-right mr-4 font-semibold">Magnet Roll Width:</label>
+                            <label htmlFor="magnet_options" className="w-48 text-left mr-4 font-semibold">Magnet Roll Width:</label>
                             <select id="magnet_options" value={magnetRollWidth} onChange={(e) => setMagnetRollWidth(e.target.value)} className="w-48 p-2 border rounded bg-gray-700 text-white">
                                 <option value="24">24"</option><option value="30">30"</option>
                             </select>
                         </div>
                         <div className="flex items-center">
-                            <label htmlFor="magnet_thickness" className="w-48 text-right mr-4 font-semibold">Magnet Thickness:</label>
+                            <label htmlFor="magnet_thickness" className="w-48 text-left mr-4 font-semibold">Magnet Thickness:</label>
                             <select id="magnet_thickness" value={magnetThickness} onChange={(e) => setMagnetThickness(e.target.value)} className="w-48 p-2 border rounded bg-gray-700 text-white">
                                 <option value="0.030">30 mil</option><option value="0.060">60 mil</option>
                             </select>
@@ -289,11 +289,11 @@ export default function Calculator() {
                 {partType === 'opus_cut_decal' && (
                     <div className="space-y-3">
                          <div className="flex items-center">
-                            <label htmlFor="opusSheetWidth" className="w-48 text-right mr-4 font-semibold">Sheet Width:</label>
+                            <label htmlFor="opusSheetWidth" className="w-48 text-left mr-4 font-semibold">Sheet Width:</label>
                             <input id="opusSheetWidth" type="number" value={opusSheetWidth} onChange={(e) => setOpusSheetWidth(e.target.value)} className="w-48 p-2 border rounded"/>
                         </div>
                         <div className="flex items-center">
-                            <label htmlFor="opusSheetHeight" className="w-48 text-right mr-4 font-semibold">Sheet Height:</label>
+                            <label htmlFor="opusSheetHeight" className="w-48 text-left mr-4 font-semibold">Sheet Height:</label>
                             <input id="opusSheetHeight" type="number" value={opusSheetHeight} onChange={(e) => setOpusSheetHeight(e.target.value)} className="w-48 p-2 border rounded"/>
                         </div>
                     </div>
@@ -301,26 +301,26 @@ export default function Calculator() {
                 {partType === 'bullet' && (
                      <div className="space-y-3">
                         <div className="flex items-center">
-                            <label htmlFor="sleeveLength" className="w-48 text-right mr-4 font-semibold">Sleeve Length:</label>
+                            <label htmlFor="sleeveLength" className="w-48 text-left mr-4 font-semibold">Sleeve Length:</label>
                             <select id="sleeveLength" value={sleeveLength} onChange={(e) => setSleeveLength(e.target.value)} className="w-48 p-2 border rounded bg-gray-700 text-white">
                                 <option value="16">16in Sleeve</option><option value="22">22in Sleeve</option>
                             </select>
                         </div>
                         <div className="flex items-center">
-                            <label htmlFor="tubeGauge" className="w-48 text-right mr-4 font-semibold">Tube Gauge:</label>
+                            <label htmlFor="tubeGauge" className="w-48 text-left mr-4 font-semibold">Tube Gauge:</label>
                             <select id="tubeGauge" value={tubeGauge} onChange={(e) => setTubeGauge(e.target.value)} className="w-48 p-2 border rounded bg-gray-700 text-white">
                                 <option value="0.100">.100</option><option value="0.110">.110</option><option value="0.125">.125</option><option value="0.218">.218</option><option value="0.318">.318</option>
                             </select>
                         </div>
                         <div className="flex items-center">
-                            <label htmlFor="tubeLength" className="w-48 text-right mr-4 font-semibold">Tube Length:</label>
+                            <label htmlFor="tubeLength" className="w-48 text-left mr-4 font-semibold">Tube Length:</label>
                             <select id="tubeLength" value={tubeLength} onChange={(e) => setTubeLength(e.target.value)} className="w-48 p-2 border rounded bg-gray-700 text-white">
                                 <option value="66">66in</option><option value="72">72in</option><option value="84">84in</option><option value="96">96in</option><option value="custom">Custom</option>
                             </select>
                         </div>
                         {tubeLength === 'custom' && (
                             <div className="flex items-center">
-                                <label htmlFor="customLengthInput" className="w-48 text-right mr-4 font-semibold">Custom Length:</label>
+                                <label htmlFor="customLengthInput" className="w-48 text-left mr-4 font-semibold">Custom Length:</label>
                                 <input type="text" id="customLengthInput" value={customTubeLength} onChange={(e) => setCustomTubeLength(e.target.value)} placeholder="Enter custom length" className="w-48 p-2 border rounded"/>
                             </div>
                         )}
@@ -338,11 +338,11 @@ export default function Calculator() {
                 {partType !== 'bullet' && (
                     <div className="space-y-3 pt-4 border-t mt-4">
                         <div className="flex items-center">
-                            <label htmlFor="itemWidth" className="w-48 text-right mr-4 font-semibold">Item Size Width:</label>
+                            <label htmlFor="itemWidth" className="w-48 text-left mr-4 font-semibold">Item Size Width:</label>
                             <input id="itemWidth" type="number" value={itemWidth} onChange={e => setItemWidth(e.target.value)} placeholder="Width in Inches" step="0.001" className="w-48 p-2 border rounded bg-gray-700" />
                         </div>
                         <div className="flex items-center">
-                            <label htmlFor="itemHeight" className="w-48 text-right mr-4 font-semibold">Item Size Height:</label>
+                            <label htmlFor="itemHeight" className="w-48 text-left mr-4 font-semibold">Item Size Height:</label>
                             <input id="itemHeight" type="number" value={itemHeight} onChange={e => setItemHeight(e.target.value)} placeholder="Height in Inches" step="0.001" className="w-48 p-2 border rounded bg-gray-700" />
                         </div>
                     </div>
