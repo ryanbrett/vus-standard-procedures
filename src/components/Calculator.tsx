@@ -351,7 +351,7 @@ export default function Calculator() {
             
             {/* Action and Results */}
             <div className="mt-6">
-                <button onClick={handleCalculate} className="ml-[200px] cursor-pointer text-white border bg-gray-700 py-2 px-4 rounded hover:bg-gray-800">Calculate</button>
+                <button onClick={handleCalculate} className="ml-[200px] cursor-pointer text-white bg-blue-600 py-2 px-4 rounded hover:bg-blue-700">Calculate</button>
                 {error && <div className="mt-2 ml-[200px] font-bold text-red-600">{error}</div>}
                 {results && <ResultsDisplay results={results} />}
             </div>

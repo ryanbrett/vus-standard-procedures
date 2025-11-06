@@ -116,19 +116,19 @@ export default function PartSearch() {
     // --- RENDER ---
     if (!user) {
         return (
-            <div className="p-5 max-w-md mx-auto border rounded mt-10 bg-gray-50">
+            <div className="p-5 max-w-md mx-auto border rounded mt-10">
                 <h2 className="text-xl font-bold mb-4">Sign In to Search Parts</h2>
                 <form onSubmit={handleSignIn} className="space-y-4">
                     <div>
                         <label className="block font-semibold mb-1">Email:</label>
-                        <input type="email" value={email} onChange={e => setEmail(e.target.value)} className="w-full p-2 border rounded" required />
+                        <input type="email" value={email} onChange={e => setEmail(e.target.value)} className="w-full p-2 border rounded bg-gray-700" required />
                     </div>
                     <div>
                         <label className="block font-semibold mb-1">Password:</label>
-                        <input type="password" value={password} onChange={e => setPassword(e.target.value)} className="w-full p-2 border rounded" required />
+                        <input type="password" value={password} onChange={e => setPassword(e.target.value)} className="w-full p-2 border rounded bg-gray-700" required />
                     </div>
                     {authError && <p className="text-red-600">{authError}</p>}
-                    <button type="submit" className="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700">Sign In</button>
+                    <button type="submit" className="cursor-pointer w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700">Sign In</button>
                 </form>
             </div>
         );
