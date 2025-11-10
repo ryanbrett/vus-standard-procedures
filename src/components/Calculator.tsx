@@ -213,7 +213,7 @@ export default function Calculator() {
     // --- RENDER (Complete and Correct) ---
     return (
         <div className="p-5 max-w-2xl mx-auto">
-            <h1 className="text-2xl font-bold mb-4">Standard Procedures<span className="text-sm font-normal"></span></h1>
+            <h1 className="text-2xl text-left font-bold mb-4">Standard Procedures<span className="text-sm font-normal"></span></h1>
             
             <div className="space-y-3">
                 {/* Main Selectors */}
@@ -289,12 +289,12 @@ export default function Calculator() {
                 {partType === 'opus_cut_decal' && (
                     <div className="space-y-3">
                          <div className="flex items-center">
-                            <label htmlFor="opusSheetWidth" className="w-48 text-left mr-4 font-semibold">Sheet Width:</label>
-                            <input id="opusSheetWidth" type="number" value={opusSheetWidth} onChange={(e) => setOpusSheetWidth(e.target.value)} className="w-48 p-2 border rounded"/>
+                            <label htmlFor="opusSheetWidth" className="w-48 text-left mr-4 font-semibold ">Sheet Width:</label>
+                            <input id="opusSheetWidth" type="number" value={opusSheetWidth} onChange={(e) => setOpusSheetWidth(e.target.value)} className="w-48 p-2 border rounded bg-gray-700"/>
                         </div>
                         <div className="flex items-center">
                             <label htmlFor="opusSheetHeight" className="w-48 text-left mr-4 font-semibold">Sheet Height:</label>
-                            <input id="opusSheetHeight" type="number" value={opusSheetHeight} onChange={(e) => setOpusSheetHeight(e.target.value)} className="w-48 p-2 border rounded"/>
+                            <input id="opusSheetHeight" type="number" value={opusSheetHeight} onChange={(e) => setOpusSheetHeight(e.target.value)} className="w-48 p-2 border rounded bg-gray-700"/>
                         </div>
                     </div>
                 )}
@@ -321,7 +321,7 @@ export default function Calculator() {
                         {tubeLength === 'custom' && (
                             <div className="flex items-center">
                                 <label htmlFor="customLengthInput" className="w-48 text-left mr-4 font-semibold">Custom Length:</label>
-                                <input type="text" id="customLengthInput" value={customTubeLength} onChange={(e) => setCustomTubeLength(e.target.value)} placeholder="Enter custom length" className="w-48 p-2 border rounded"/>
+                                <input type="text" id="customLengthInput" value={customTubeLength} onChange={(e) => setCustomTubeLength(e.target.value)} placeholder="Enter custom length" className="w-48 p-2 border rounded bg-gray-700"/>
                             </div>
                         )}
                         <div className="ml-[200px] grid grid-cols-2 gap-x-4 gap-y-2 w-max">

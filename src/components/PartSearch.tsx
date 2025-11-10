@@ -153,9 +153,9 @@ export default function PartSearch() {
                 </div>
                 <div className="flex-[2]">
                     <label className="block font-semibold mb-1">Part Name (Optional):</label>
-                    <input type="text" value={searchName} onChange={e => setSearchName(e.target.value)} placeholder="Enter part name to filter" className="w-full p-2 border rounded" />
+                    <input type="text" value={searchName} onChange={e => setSearchName(e.target.value)} placeholder="Enter part name to filter" className="w-full p-2 border rounded  bg-gray-700" />
                 </div>
-                <button onClick={() => handleSearch(false)} disabled={loading} className="bg-blue-600 text-white px-6 py-2 rounded hover:bg-blue-700 disabled:bg-gray-400 h-10">
+                <button onClick={() => handleSearch(false)} disabled={loading} className="bg-blue-600 cursor-pointer text-white px-6 py-2 rounded hover:bg-blue-700 disabled:bg-gray-400 h-10">
                     {loading ? 'Searching...' : 'Search'}
                 </button>
             </div>
@@ -164,7 +164,7 @@ export default function PartSearch() {
 
             <div className="space-y-4">
                 {results.map((part, index) => (
-                    <div key={index} className="p-4 border rounded bg-white shadow-sm text-sm">
+                    <div key={index} className="p-4 text-left border rounded shadow-sm text-sm">
                         <div className="grid grid-cols-2 gap-2">
                             <p><strong>Part No:</strong> {part['Part No'] || 'N/A'}</p>
                             <p><strong>Rev:</strong> {part.Rev || 'N/A'}</p>
@@ -180,7 +180,7 @@ export default function PartSearch() {
             </div>
 
             {hasMore && (
-                 <button onClick={() => handleSearch(true)} disabled={loading} className="mt-6 w-full bg-gray-200 py-2 rounded hover:bg-gray-300">
+                 <button onClick={() => handleSearch(true)} disabled={loading} className="mt-6 cursor-pointer w-full bg-blue-600 py-2 rounded hover:bg-blue-700">
                     Load More
                 </button>
             )}
