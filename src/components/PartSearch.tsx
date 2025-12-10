@@ -48,8 +48,11 @@ const SEARCH_CONFIG_MAP: { [key: string]: SearchConfig } = {
   hdpe_sign: {
     serverFilters: [
       { field: "Part Group", op: "==", value: "Signs" },
+      //{ field: "Part Type", op: "==", value: "Small Signs" },     
       { field: "Grade", op: "==", value: "HDPE" }
-    ]
+    ],
+    clientFilterField: "Part Type",
+    clientFilterValues: ["Small Signs", "Large Signs"]
   },
   acm_sign: {
     serverFilters: [
@@ -57,7 +60,9 @@ const SEARCH_CONFIG_MAP: { [key: string]: SearchConfig } = {
       // Prefix filter for "3mm" on the 'Name' field
       { field: "Name", op: ">=", value: "3mm" },
       { field: "Name", op: "<=", value: "3mm\uf8ff" }
-    ]
+    ],
+    clientFilterField: "Part Type",
+    clientFilterValues: ["Small Signs", "Large Signs"]
   },
   aluminum_sign: {
     serverFilters: [
@@ -68,8 +73,10 @@ const SEARCH_CONFIG_MAP: { [key: string]: SearchConfig } = {
   corrugated: {
     serverFilters: [
       { field: "Part Group", op: "==", value: "Signs" },
-      { field: "Part Type", op: "==", value: "Temporary Markings" }
-    ]
+      { field: "Part Type", op: "==", value: "Temporary Markings" } 
+    ],
+    clientFilterField: "Name",
+    clientFilterValues: ["Coroplast"]
   },
 
   // --- Decals ---
@@ -216,30 +223,37 @@ export default function PartSearch() {
       const q = query(collection(db, collectionPath), ...constraints);
       const snapshot = await getDocs(q);
 
-      // --- 5. CLIENT-SIDE FILTERING (Unchanged from before) ---
+      // --- 5. CLIENT-SIDE FILTERING (This is the updated, null-safe block) ---
       const newResults: DocumentData[] = [];
-      const lowerSearchName = searchName.toLowerCase();
-      const clientKeywords = config.clientFilterValues?.map(k => k.toLowerCase());
-      const clientField = config.clientFilterField;
+      
+      const lowerSearchName = searchName.toLowerCase(); // From the text input
+      const clientKeywords = config.clientFilterValues?.map(k => k.toLowerCase()); // From the config (e.g., ['magnet'])
+      const clientField = config.clientFilterField; // e.g., 'Name'
 
       snapshot.forEach((doc) => {
-        const data = doc.data();
+          const data = doc.data();
 
-        // Condition 1: Check free-text input box
-        const matchesSearchName = !searchName || 
-                                  data.Name?.toLowerCase().includes(lowerSearchName);
+          // Condition 1: Check free-text input box (The "Part Name (Optional)" field)
+          // We get the data.Name, or default to an empty string if it's null.
+          const docNameLower = (data.Name || '').toLowerCase();
+          const matchesSearchName = !searchName || docNameLower.includes(lowerSearchName);
 
-        // Condition 2: Check dropdown "contains" filter
-        let matchesDropdownKeywords = true; // Default to true
-        if (clientKeywords && clientField && data[clientField]) {
-          const dataToSearch = (data[clientField] as string).toLowerCase();
-          matchesDropdownKeywords = clientKeywords.some(keyword => dataToSearch.includes(keyword));
-        }
-        
-        // Add to results only if both conditions pass
-        if (matchesSearchName && matchesDropdownKeywords) {
-          newResults.push(data);
-        }
+          // Condition 2: Check dropdown's "contains" filter (The "magnet" config)
+          let matchesDropdownKeywords = true; // Default to true (passes if no filter)
+          
+          if (clientKeywords && clientField) {
+              // Get the data from the specified field (e.g., 'Name')
+              // We default to an empty string here, too, to prevent crashes.
+              const dataToSearchLower = (data[clientField] || '').toLowerCase();
+              
+              // .some() checks if *any* keyword (e.g., "opus" OR "pmps") is found
+              matchesDropdownKeywords = clientKeywords.some(keyword => dataToSearchLower.includes(keyword));
+          }
+          
+          // The doc is a match *only if both* conditions pass
+          if (matchesSearchName && matchesDropdownKeywords) {
+              newResults.push(data);
+          }
       });
       
       // --- 6. UPDATE STATE (Unchanged) ---
@@ -329,7 +343,8 @@ export default function PartSearch() {
               <p><strong>Part Type:</strong> {part['Part Type'] || 'N/A'}</p>
               <p><strong>Part Group:</strong> {part['Part Group'] || 'N/A'}</p>              
               <p><strong>Part Status:</strong> {part['Part Status'] || 'N/A'}</p>
-              <p className="col-span-2"><strong>Note:</strong> {part.Note || 'N/A'}</p>
+              <p><strong>Grade:</strong> {part['Grade'] || 'N/A'}</p>
+              <p><strong>Note:</strong> {part.Note || 'N/A'}</p>
             </div>
           </div>
         ))}
